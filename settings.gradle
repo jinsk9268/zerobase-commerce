@@ -1,4 +1,5 @@
 rootProject.name = 'commerce'
 include 'user-api'
 include 'zerobase-domain'
+include 'order-api'
 
