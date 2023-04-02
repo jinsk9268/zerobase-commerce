@@ -30,4 +30,18 @@ public class SignupController {
     signupApplication.customerVerify(email, code);
     return ResponseEntity.ok("인증이 완료되었습니다.");
   }
+
+  /**
+   * seller
+   */
+  @PostMapping("/seller")
+  public ResponseEntity<String> sellerSignup(@RequestBody SignupForm form) {
+    return ResponseEntity.ok(signupApplication.sellerSignup(form));
+  }
+
+  @PutMapping("/seller/verify")
+  public ResponseEntity<String> verifySeller(String email, String code) {
+    signupApplication.sellerVerify(email, code);
+    return ResponseEntity.ok("판매자 인증이 완료되었습니다.");
+  }
 }
