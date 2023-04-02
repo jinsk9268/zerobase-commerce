@@ -40,6 +40,8 @@ public class CustomerEntity extends BaseEntity {
   private String verificationCode;
   private boolean verify;
 
+  private Integer balance;
+
   public static CustomerEntity from(SignupForm form) {
     return CustomerEntity.builder()
         .email(form.getEmail().toLowerCase(Locale.ROOT))
