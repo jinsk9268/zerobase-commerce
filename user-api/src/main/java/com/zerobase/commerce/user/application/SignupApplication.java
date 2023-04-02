@@ -2,10 +2,12 @@ package com.zerobase.commerce.user.application;
 
 import com.zerobase.commerce.user.domain.SignupForm;
 import com.zerobase.commerce.user.domain.model.CustomerEntity;
+import com.zerobase.commerce.user.domain.model.SellerEntity;
 import com.zerobase.commerce.user.exception.CustomException;
 import com.zerobase.commerce.user.exception.ErrorCode;
 import com.zerobase.commerce.user.service.MailgunService;
 import com.zerobase.commerce.user.service.customer.SignupCustomerService;
+import com.zerobase.commerce.user.service.seller.SellerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -17,6 +19,7 @@ import org.springframework.stereotype.Service;
 public class SignupApplication {
 
   private final SignupCustomerService signupCustomerService;
+  private final SellerService sellerService;
   private final MailgunService mailgunService;
 
   /**
@@ -45,9 +48,34 @@ public class SignupApplication {
     signupCustomerService.verifyEmail(email, code);
   }
 
+  /**
+   * seller
+   */
+  public String sellerSignup(SignupForm form) {
+    if (sellerService.isEmailExist(form.getEmail())) {
+      throw new CustomException(ErrorCode.ALREADY_REGISTERED_USER);
+    }
+
+    SellerEntity seller = sellerService.signup(form);
+    String code = getRandomCode();
+
+    mailgunService.sendMail(
+        seller.getEmail(),
+        "Seller Signup Verification Email!",
+        getVerificationEmailBody(seller.getName(), "seller", seller.getEmail(), code)
+    );
+
+    sellerService.changeSellerValidateEmail(seller.getId(), code);
+
+    return "판매자 회원가입에 성공했습니다.";
+  }
+
+  public void sellerVerify(String email, String code) {
+    sellerService.verifyEmail(email, code);
+  }
 
   /**
-   * 이메일 인증 관련
+   * 인증 관련
    */
   private String getRandomCode() {
     return RandomStringUtils.random(10, true, true);
