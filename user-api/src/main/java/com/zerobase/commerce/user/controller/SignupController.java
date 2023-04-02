@@ -17,12 +17,15 @@ public class SignupController {
 
   private final SignupApplication signupApplication;
 
-  @PostMapping
+  /**
+   * customer
+   */
+  @PostMapping("/customer")
   public ResponseEntity<String> customerSignup(@RequestBody SignupForm form) {
     return ResponseEntity.ok(signupApplication.customerSignup(form));
   }
 
-  @PutMapping("/verify/customer")
+  @PutMapping("/customer/verify")
   public ResponseEntity<String> verifyCustomer(String email, String code) {
     signupApplication.customerVerify(email, code);
     return ResponseEntity.ok("인증이 완료되었습니다.");
