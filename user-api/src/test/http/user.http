@@ -1,0 +1,70 @@
+### 회원가입 (고객)
+POST http://localhost:8081/signup/customer
+Content-Type: application/json
+
+{
+  "birth": "2023-04-02",
+  "email": "customer@gmail.com",
+  "name": "test",
+  "password": "1q2w3e4r5t",
+  "phone": "01012341234"
+}
+
+### 이메일 인증 (고객)
+PUT http://localhost:8081/signup/customer/verify?email=jinsk9268@gmail.com&code=hyYQXOVfuj
+
+### 로그인 (고객)
+POST http://localhost:8081/signin/customer
+Content-Type: application/json
+
+{
+  "email": "customer@gmail.com",
+  "password": "1q2w3e4r5t"
+}
+
+### 회원정보 조회 (고객)
+GET http://localhost:8081/customer/info
+Content-Type: application/json
+#X-AUTH-TOKEN:
+
+### 잔액 변경 (고객)
+POST http://localhost:8081/customer/balance
+Content-Type: application/json
+#X-AUTH-TOKEN:
+
+{
+  "from": "admin",
+  "message": "적립금 추가",
+  "money": 10000
+}
+
+################
+
+### 회원가입 (셀러)
+POST http://localhost:8081/signup/seller
+Content-Type: application/json
+
+{
+  "birth": "2023-04-02",
+  "email": "seller@gmail.com",
+  "name": "test",
+  "password": "1q2w3e4r5t",
+  "phone": "01012341234"
+}
+
+### 이메일 인증 (셀러)
+PUT http://localhost:8081/signup/seller/verify?email=jinsk9268@gmail.com&code=HvkhiXpG13
+
+### 로그인 (셀러)
+POST http://localhost:8081/signin/seller
+Content-Type: application/json
+
+{
+  "email": "seller@gmail.com",
+  "password": "1q2w3e4r5t"
+}
+
+### 회원정보 조회 (셀러)
+GET http://localhost:8081/seller/info
+Content-Type: application/json
+#X-AUTH-TOKEN:
