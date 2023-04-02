@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import com.zerobase.commerce.user.domain.SignupForm;
 import com.zerobase.commerce.user.domain.model.CustomerEntity;
+import com.zerobase.commerce.user.service.customer.SignupCustomerService;
 import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

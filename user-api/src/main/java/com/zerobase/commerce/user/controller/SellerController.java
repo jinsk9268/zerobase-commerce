@@ -2,10 +2,10 @@ package com.zerobase.commerce.user.controller;
 
 import static com.zerobase.commerce.user.exception.ErrorCode.NOT_FOUND_USER;
 
-import com.zerobase.commerce.user.domain.customer.CustomerDto;
-import com.zerobase.commerce.user.domain.model.CustomerEntity;
+import com.zerobase.commerce.user.domain.model.SellerEntity;
+import com.zerobase.commerce.user.domain.seller.SellerDto;
 import com.zerobase.commerce.user.exception.CustomException;
-import com.zerobase.commerce.user.service.customer.CustomerService;
+import com.zerobase.commerce.user.service.seller.SellerService;
 import com.zerobase.domain.config.JwtAuthenticationProvider;
 import com.zerobase.domain.domain.common.UserVo;
 import lombok.RequiredArgsConstructor;
@@ -16,22 +16,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/customer")
+@RequestMapping("/seller")
 @RequiredArgsConstructor
-public class CustomerController {
+public class SellerController {
 
   private final JwtAuthenticationProvider provider;
-  private final CustomerService customerService;
+  private final SellerService sellerService;
 
   @GetMapping("/info")
-  public ResponseEntity<CustomerDto> getCustomerInfo(
+  public ResponseEntity<SellerDto> getSellerInfo(
       @RequestHeader(name = "X-AUTH-TOKEN") String token
   ) {
     UserVo vo = provider.getUserVo(token);
-    CustomerEntity customer = customerService.findByIdAndEmail(vo.getId(), vo.getEmail())
+
+    SellerEntity seller = sellerService.findByIdAndEmail(vo.getId(), vo.getEmail())
         .orElseThrow(() -> new CustomException(NOT_FOUND_USER));
 
-    return ResponseEntity.ok(CustomerDto.from(customer));
+    return ResponseEntity.ok(SellerDto.from(seller));
   }
-
 }
