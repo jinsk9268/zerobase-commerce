@@ -5,7 +5,7 @@ import static com.zerobase.commerce.user.exception.ErrorCode.NOT_FOUND_USER;
 import com.zerobase.commerce.user.domain.customer.CustomerDto;
 import com.zerobase.commerce.user.domain.model.CustomerEntity;
 import com.zerobase.commerce.user.exception.CustomException;
-import com.zerobase.commerce.user.service.CustomerService;
+import com.zerobase.commerce.user.service.customer.CustomerService;
 import com.zerobase.domain.config.JwtAuthenticationProvider;
 import com.zerobase.domain.domain.common.UserVo;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/customer")
 @RequiredArgsConstructor
 public class CustomerController {
-  private  final JwtAuthenticationProvider provider;
+
+  private final JwtAuthenticationProvider provider;
   private final CustomerService customerService;
 
   @GetMapping("/info")
@@ -32,6 +33,5 @@ public class CustomerController {
 
     return ResponseEntity.ok(CustomerDto.from(customer));
   }
-
 
 }
