@@ -12,8 +12,15 @@ public class CustomerDto {
 
   private Long id;
   private String email;
+  private Integer balance;
 
   public static CustomerDto from(CustomerEntity customer) {
-    return new CustomerDto(customer.getId(), customer.getEmail());
+    Integer balance = customer.getBalance();
+
+    return new CustomerDto(
+        customer.getId(),
+        customer.getEmail(),
+        balance == null ? 0 : balance
+    );
   }
 }
