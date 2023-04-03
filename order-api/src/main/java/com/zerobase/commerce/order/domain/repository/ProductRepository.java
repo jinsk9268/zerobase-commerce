@@ -9,4 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
   @EntityGraph(attributePaths = {"productItems"}, type = EntityGraphType.LOAD)
   Optional<ProductEntity> findWithProductItemsById(Long id);
+
+  @EntityGraph(attributePaths = {"productItems"}, type = EntityGraphType.LOAD)
+  Optional<ProductEntity> findBySellerIdAndId(Long sellerId, Long id);
 }
