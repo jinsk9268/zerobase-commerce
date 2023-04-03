@@ -32,7 +32,7 @@ public class ProductService {
     product.setName(form.getName());
     product.setDescription(form.getDescription());
 
-    for (UpdateProductItemForm itemForm: form.getItems()) {
+    for (UpdateProductItemForm itemForm : form.getItems()) {
       ProductItemEntity item = product.getProductItems().stream()
           .filter(pi -> pi.getId().equals(itemForm.getId()))
           .findFirst()
@@ -44,5 +44,13 @@ public class ProductService {
     }
 
     return product;
+  }
+
+  @Transactional
+  public void deleteProduct(Long sellerId, Long productId) {
+    ProductEntity product = productRepository.findBySellerIdAndId(sellerId, productId)
+        .orElseThrow(() -> new CustomException(NOT_FOUND_PRODUCT));
+
+    productRepository.delete(product);
   }
 }
