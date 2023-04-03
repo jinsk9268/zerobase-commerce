@@ -1,6 +1,7 @@
 package com.zerobase.commerce.order.controller;
 
 import com.zerobase.commerce.order.domain.product.AddProductForm;
+import com.zerobase.commerce.order.domain.product.AddProductItemForm;
 import com.zerobase.commerce.order.domain.product.ProductDto;
 import com.zerobase.commerce.order.service.ProductItemService;
 import com.zerobase.commerce.order.service.ProductService;
@@ -30,6 +31,18 @@ public class SellerProductController {
     return ResponseEntity.ok(
         ProductDto.from(
             productService.addProduct(provider.getUserVo(token).getId(), form)
+        )
+    );
+  }
+
+  @PostMapping("/items")
+  public ResponseEntity<ProductDto> addProductItem(
+      @RequestHeader(name = "X-AUTH-TOKEN") String token,
+      @RequestBody AddProductItemForm form
+  ) {
+    return ResponseEntity.ok(
+        ProductDto.from(
+            productItemService.addProductItem(provider.getUserVo(token).getId(), form)
         )
     );
   }
