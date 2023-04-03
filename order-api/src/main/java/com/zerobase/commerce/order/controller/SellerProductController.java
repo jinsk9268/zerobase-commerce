@@ -11,11 +11,13 @@ import com.zerobase.commerce.order.service.ProductService;
 import com.zerobase.domain.config.JwtAuthenticationProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -79,6 +81,27 @@ public class SellerProductController {
             productItemService.updateProductItem(getSellerId(token), form)
         )
     );
+  }
+
+  /**
+   * 상품, 상품 아이템 삭제
+   */
+  @DeleteMapping
+  public ResponseEntity<String> deleteProduct(
+      @RequestHeader(name = "X-AUTH-TOKEN") String token,
+      @RequestParam Long id
+  ) {
+    productService.deleteProduct(getSellerId(token), id);
+    return ResponseEntity.ok(id + "번 상품이 삭제되었습니다.");
+  }
+
+  @DeleteMapping("/item")
+  public ResponseEntity<String> deleteProductItem(
+      @RequestHeader(name = "X-AUTH-TOKEN") String token,
+      @RequestParam Long id
+  ) {
+    productItemService.deleteProductItem(getSellerId(token), id);
+    return ResponseEntity.ok(id + "번 상품 아이템이 삭제되었습니다.");
   }
 
   /**
