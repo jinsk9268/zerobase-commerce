@@ -1,5 +1,6 @@
 package com.zerobase.commerce.order.domain.model;
 
+import com.zerobase.commerce.order.domain.product.AddProductItemForm;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,4 +37,13 @@ public class ProductItemEntity extends BaseEntity {
   @ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "product_id")
   private ProductEntity product;
+
+  public static ProductItemEntity of(Long sellerId, AddProductItemForm form) {
+    return ProductItemEntity.builder()
+        .sellerId(sellerId)
+        .name(form.getName())
+        .price(form.getPrice())
+        .count(form.getCount())
+        .build();
+  }
 }
