@@ -58,3 +58,10 @@ X-AUTH-TOKEN:
   "price": 10000
 }
 
+### 상품 삭제
+DELETE http://localhost:8082/seller/product?id=1
+X-AUTH-TOKEN:
+
+### 상품 아이템 삭제
+DELETE http://localhost:8082/seller/product/item?id=1
+X-AUTH-TOKEN:
