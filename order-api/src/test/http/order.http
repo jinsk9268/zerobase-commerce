@@ -1,0 +1,29 @@
+### 상품 추가
+POST http://localhost:8082/seller/product
+Content-Type: application/json
+X-AUTH-TOKEN:
+
+{
+  "description": "상품 설명,",
+  "items": [
+    {
+      "name": "270",
+      "price": 100000,
+      "count": 1
+    }
+  ],
+  "name": "나이키 에어포스"
+}
+
+### 상품 아이템 추가
+POST http://localhost:8082/seller/product/items
+Content-Type: application/json
+X-AUTH-TOKEN:
+
+{
+  "productId": 2,
+  "count": 1,
+  "name": "280",
+  "price": 100000
+}
+
