@@ -16,14 +16,45 @@ X-AUTH-TOKEN:
 }
 
 ### 상품 아이템 추가
-POST http://localhost:8082/seller/product/items
+POST http://localhost:8082/seller/product/item
 Content-Type: application/json
 X-AUTH-TOKEN:
 
 {
-  "productId": 2,
+  "productId": 1,
   "count": 1,
   "name": "280",
   "price": 100000
+}
+
+### 상품 수정
+PUT http://localhost:8082/seller/product
+Content-Type: application/json
+X-AUTH-TOKEN:
+
+{
+  "id": 1,
+  "description": "상품 수정",
+  "name": "나이키 에어포스 수정",
+  "items": [
+    {
+      "id": 1,
+      "name": "270",
+      "price": 100000,
+      "count": 5
+    }
+  ]
+}
+
+### 상품 아이템 수정
+PUT http://localhost:8082/seller/product/item
+Content-Type: application/json
+X-AUTH-TOKEN:
+
+{
+  "id": 1,
+  "count": 100,
+  "name": "270",
+  "price": 10000
 }
 
