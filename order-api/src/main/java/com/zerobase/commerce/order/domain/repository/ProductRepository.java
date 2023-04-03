@@ -6,7 +6,8 @@ import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.EntityGraph.EntityGraphType;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
+public interface ProductRepository
+    extends JpaRepository<ProductEntity, Long>, ProductRepositoryCustom {
   @EntityGraph(attributePaths = {"productItems"}, type = EntityGraphType.LOAD)
   Optional<ProductEntity> findWithProductItemsById(Long id);
 
