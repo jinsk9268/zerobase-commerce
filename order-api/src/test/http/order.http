@@ -7,12 +7,12 @@ X-AUTH-TOKEN:
   "description": "상품 설명,",
   "items": [
     {
-      "name": "단호박",
+      "name": "230",
       "price": 100000,
       "count": 5
     }
   ],
-  "name": "나이키 찹살떡"
+  "name": "나이키 찹쌀떡"
 }
 
 ### 상품 아이템 추가
@@ -22,7 +22,7 @@ X-AUTH-TOKEN:
 
 {
   "productId": 1,
-  "count": 1,
+  "count": 6,
   "name": "230",
   "price": 100000
 }
@@ -67,9 +67,29 @@ DELETE http://localhost:8082/seller/product/item?id=1
 X-AUTH-TOKEN:
 
 ### 상품 검색
-GET http://localhost:8082/search/product?name=나이키
+GET http://localhost:8082/search/product?name=찹쌀떡
 Content-Type: application/json
 
 ### 상품 디테일 검색
 GET http://localhost:8082/search/product/detail?id=2
 Content-Type: application/json
+
+### 카트 추가
+POST http://localhost:8082/customer/cart
+Content-Type: application/json
+X-AUTH-TOKEN:
+
+{
+  "description": "상품 설명,",
+  "id": 2,
+  "items": [
+    {
+      "count": 1,
+      "id": 2,
+      "name": "230",
+      "price": 100000
+    }
+  ],
+  "name": "나이키 찹쌀떡",
+  "sellerId": 1
+}
