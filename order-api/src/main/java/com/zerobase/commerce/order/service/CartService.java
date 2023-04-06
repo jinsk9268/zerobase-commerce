@@ -61,6 +61,9 @@ public class CartService {
             cart.addMessage(redisProduct.getName() + " " + item.getName() +
                 "의 가격이 변경되었습니다. 확인 부탁드립니다.");
           }
+
+          // 수량 업데이트 필요시 나중에 다시 점검 필요
+          // redisItem.setCount(redisItem.getCount() + item.getCount());
         }
       }
     } else {
