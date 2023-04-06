@@ -39,7 +39,7 @@ public class SellerProductController {
   ) {
     return ResponseEntity.ok(
         ProductDto.from(
-            productService.addProduct(getSellerId(token), form)
+            productService.addProduct(provider.getUserId(token), form)
         )
     );
   }
@@ -51,7 +51,7 @@ public class SellerProductController {
   ) {
     return ResponseEntity.ok(
         ProductDto.from(
-            productItemService.addProductItem(getSellerId(token), form)
+            productItemService.addProductItem(provider.getUserId(token), form)
         )
     );
   }
@@ -66,7 +66,7 @@ public class SellerProductController {
   ) {
     return ResponseEntity.ok(
         ProductDto.from(
-            productService.updateProduct(getSellerId(token), form)
+            productService.updateProduct(provider.getUserId(token), form)
         )
     );
   }
@@ -78,7 +78,7 @@ public class SellerProductController {
   ) {
     return ResponseEntity.ok(
         ProductItemDto.from(
-            productItemService.updateProductItem(getSellerId(token), form)
+            productItemService.updateProductItem(provider.getUserId(token), form)
         )
     );
   }
@@ -91,7 +91,7 @@ public class SellerProductController {
       @RequestHeader(name = "X-AUTH-TOKEN") String token,
       @RequestParam Long id
   ) {
-    productService.deleteProduct(getSellerId(token), id);
+    productService.deleteProduct(provider.getUserId(token), id);
     return ResponseEntity.ok(id + "번 상품이 삭제되었습니다.");
   }
 
@@ -100,14 +100,7 @@ public class SellerProductController {
       @RequestHeader(name = "X-AUTH-TOKEN") String token,
       @RequestParam Long id
   ) {
-    productItemService.deleteProductItem(getSellerId(token), id);
+    productItemService.deleteProductItem(provider.getUserId(token), id);
     return ResponseEntity.ok(id + "번 상품 아이템이 삭제되었습니다.");
-  }
-
-  /**
-   * 토큰으로 부터 셀러 id 가져오기
-   */
-  private Long getSellerId(String token) {
-    return provider.getUserVo(token).getId();
   }
 }
