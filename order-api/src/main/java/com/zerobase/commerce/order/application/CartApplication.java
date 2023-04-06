@@ -168,6 +168,14 @@ public class CartApplication {
   }
 
   /**
+   * 장바구니 업데이트
+   */
+  public Cart updateCart(Long customerId, Cart cart) {
+    cartService.putCart(customerId, cart);
+    return getCart(customerId);
+  }
+
+  /**
    * 장바구니 삭제
    */
   public void clearCart(Long customerId) {

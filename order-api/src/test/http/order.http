@@ -4,15 +4,15 @@ Content-Type: application/json
 X-AUTH-TOKEN:
 
 {
-  "description": "다식",
+  "description": "찹쌀떡 시리즈",
   "items": [
     {
-      "name": "깨꿀",
+      "name": "단호박",
       "price": 100000,
       "count": 5
     }
   ],
-  "name": "나이키 다식"
+  "name": "나이키 찹살떡1"
 }
 
 ### 상품 아이템 추가
@@ -22,8 +22,8 @@ X-AUTH-TOKEN:
 
 {
   "productId": 1,
-  "count": 6,
-  "name": "딸기",
+  "count": 5,
+  "name": "단호박-딸기",
   "price": 100000
 }
 
@@ -80,20 +80,46 @@ Content-Type: application/json
 X-AUTH-TOKEN:
 
 {
-  "description": "약과",
-  "id": 2,
+  "description": "찹쌀떡 시리즈",
+  "id": 1,
   "items": [
     {
-      "count": 2,
-      "id": 2,
-      "name": "흑임자",
-      "price": 100000
+      "count": 1,
+      "id": 1,
+      "name": "단호박",
+      "price": 5000
     }
   ],
-  "name": "나이키 약과",
+  "name": "나이키 찹쌀떡0",
   "sellerId": 1
 }
 
 ### 카트 조회
 GET http://localhost:8082/customer/cart
 X-AUTH-TOKEN:
+
+### 카트 업데이트
+PUT http://localhost:8082/customer/cart
+Content-Type: application/json
+X-AUTH-TOKEN:
+
+{
+  "customerId": 1,
+  "messages": [],
+  "products": [
+    {
+      "description": "찹쌀떡 시리즈",
+      "id": 1,
+      "items": [
+        {
+          "count": 2,
+          "id": 1,
+          "name": "단호박-플레인",
+          "price": 5000
+        }
+      ],
+      "name": "나이키 찹쌀떡0",
+      "sellerId": 1
+    }
+  ]
+}
