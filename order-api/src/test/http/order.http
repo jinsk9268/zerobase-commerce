@@ -4,15 +4,15 @@ Content-Type: application/json
 X-AUTH-TOKEN:
 
 {
-  "description": "상품 설명,",
+  "description": "다식",
   "items": [
     {
-      "name": "230",
+      "name": "깨꿀",
       "price": 100000,
       "count": 5
     }
   ],
-  "name": "나이키 찹쌀떡"
+  "name": "나이키 다식"
 }
 
 ### 상품 아이템 추가
@@ -23,7 +23,7 @@ X-AUTH-TOKEN:
 {
   "productId": 1,
   "count": 6,
-  "name": "230",
+  "name": "딸기",
   "price": 100000
 }
 
@@ -67,11 +67,11 @@ DELETE http://localhost:8082/seller/product/item?id=1
 X-AUTH-TOKEN:
 
 ### 상품 검색
-GET http://localhost:8082/search/product?name=찹쌀떡
+GET http://localhost:8082/search/product?name=나이키
 Content-Type: application/json
 
 ### 상품 디테일 검색
-GET http://localhost:8082/search/product/detail?id=2
+GET http://localhost:8082/search/product/detail?id=1
 Content-Type: application/json
 
 ### 카트 추가
@@ -80,16 +80,20 @@ Content-Type: application/json
 X-AUTH-TOKEN:
 
 {
-  "description": "상품 설명,",
+  "description": "약과",
   "id": 2,
   "items": [
     {
-      "count": 1,
+      "count": 2,
       "id": 2,
-      "name": "230",
+      "name": "흑임자",
       "price": 100000
     }
   ],
-  "name": "나이키 찹쌀떡",
+  "name": "나이키 약과",
   "sellerId": 1
 }
+
+### 카트 조회
+GET http://localhost:8082/customer/cart
+X-AUTH-TOKEN:
