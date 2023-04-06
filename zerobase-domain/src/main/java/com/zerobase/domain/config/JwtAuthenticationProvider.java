@@ -53,4 +53,7 @@ public class JwtAuthenticationProvider {
     );
   }
 
+  public Long getUserId(String token) {
+    return getUserVo(token).getId();
+  }
 }
