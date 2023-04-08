@@ -7,12 +7,12 @@ X-AUTH-TOKEN:
   "description": "찹쌀떡 시리즈",
   "items": [
     {
-      "name": "단호박",
-      "price": 100000,
+      "name": "단팥-플레인",
+      "price": 5000,
       "count": 5
     }
   ],
-  "name": "나이키 찹살떡1"
+  "name": "나이키 찹살떡4"
 }
 
 ### 상품 아이템 추가
@@ -24,7 +24,7 @@ X-AUTH-TOKEN:
   "productId": 1,
   "count": 5,
   "name": "단호박-딸기",
-  "price": 100000
+  "price": 10000
 }
 
 ### 상품 수정
@@ -86,11 +86,11 @@ X-AUTH-TOKEN:
     {
       "count": 1,
       "id": 1,
-      "name": "단호박",
+      "name": "단호박-플레인",
       "price": 5000
     }
   ],
-  "name": "나이키 찹쌀떡0",
+  "name": "나이키 찹쌀떡1",
   "sellerId": 1
 }
 
@@ -119,6 +119,32 @@ X-AUTH-TOKEN:
         }
       ],
       "name": "나이키 찹쌀떡0",
+      "sellerId": 1
+    }
+  ]
+}
+
+### 카트 주문
+POST http://localhost:8082/customer/cart/order
+Content-Type: application/json
+X-AUTH-TOKEN:
+
+{
+  "customerId": 1,
+  "messages": [],
+  "products": [
+    {
+      "description": "찹쌀떡 시리즈",
+      "id": 1,
+      "items": [
+        {
+          "count": 1,
+          "id": 1,
+          "name": "단호박-플레인",
+          "price": 5000
+        }
+      ],
+      "name": "나이키 찹쌀떡1",
       "sellerId": 1
     }
   ]

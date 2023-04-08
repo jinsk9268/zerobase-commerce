@@ -40,6 +40,11 @@ public class ProductItemService {
   }
 
   @Transactional
+  public ProductItemEntity getProductItem(Long id) {
+    return productItemRepository.getById(id);
+  }
+
+  @Transactional
   public ProductItemEntity updateProductItem(Long sellerId, UpdateProductItemForm form) {
     ProductItemEntity productItem = productItemRepository.findById(form.getId())
         .filter(pi -> pi.getSellerId().equals(sellerId))
